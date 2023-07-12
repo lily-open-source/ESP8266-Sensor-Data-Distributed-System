@@ -11,7 +11,7 @@ This code is designed to read sensor data from an analog-to-digital converter (A
 
 1. Connect the analog sensor to the ADC input of your device.
 2. Replace the `URL` variable in the code with the actual URL of the HTTP server that will receive the sensor data.
-   - Example: `URL = "http://192.168.0.100:8000"`
+    - Example: `URL = "http://192.168.0.100:8000"`
 3. Ensure that the HTTP server is capable of receiving data in the expected format.
 
 ## Usage
