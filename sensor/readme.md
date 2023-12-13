@@ -1,43 +1,37 @@
-# Sensor Data Sender
+# ESP8266 Sensor Data Sender
 
-This code is designed to read sensor data from an analog-to-digital converter (ADC) and send it to an HTTP server. It can be used to collect and transmit sensor data from a microcontroller or IoT device to a remote server for further processing or analysis.
+This Python script is designed for an ESP8266 microcontroller with an analog sensor connected. It continuously reads the sensor value, sends it to an HTTP server, and repeats the process at regular intervals.
 
 ## Prerequisites
 
-- This code is written in Python and requires a compatible microcontroller or IoT device with a network connection and an ADC module.
-- The `machine` and `time` modules are required for running this code. Ensure that these modules are available on your device.
+Before running the script, make sure to:
 
-## Setup
+1. **Adjust the URL:** Replace the placeholder URL (`http://192.168.0.100:8000`) with the actual URL of your HTTP server.
 
-1. Connect the analog sensor to the ADC input of your device.
-2. Replace the `URL` variable in the code with the actual URL of the HTTP server that will receive the sensor data.
-    - Example: `URL = "http://192.168.0.100:8000"`
-3. Ensure that the HTTP server is capable of receiving data in the expected format.
+2. **Install MicroPython Libraries:** Ensure that your ESP8266 board has MicroPython installed, and the required libraries (`urequests`) are available.
+
+3. **Sensor Connection:** Connect the analog sensor to the ADC pin (Pin 0 in this example) on the ESP8266.
+
+## Script Execution
+
+The script follows these steps in an infinite loop:
+
+1. **Read Sensor:** It uses the analog-to-digital converter (ADC) to read the sensor value.
+
+2. **HTTP Post Request:** The sensor value is sent as a POST request to the specified URL.
+
+3. **Delay:** The script pauses for one second before reading the sensor again.
 
 ## Usage
 
-1. Upload the code to your microcontroller or IoT device.
-2. Execute the code.
-3. The device will continuously read the sensor value from the ADC.
-4. It will send the sensor value to the specified HTTP server using the `POST` method with the sensor value included in the request data.
-5. After sending the data, the code will wait for one second before reading the sensor value again.
-6. The process continues indefinitely until the code is stopped or interrupted.
+1. Upload the script to your ESP8266 board running MicroPython.
+2. Connect an analog sensor to Pin 0 (ADC pin) on the ESP8266.
+3. Power on the ESP8266.
 
-## Important Notes
+The ESP8266 will continuously read the sensor value and send it to the specified HTTP server URL.
 
-- Make sure that the ADC pin and the reference voltage are properly configured for accurate sensor readings.
-- Adjust the sleep duration (`time.sleep(1)`) if you need a different interval between sensor readings.
-- Ensure that the device has a stable network connection to successfully send the data to the HTTP server.
-- Modify the code according to your specific requirements, such as adding authentication, error handling, or additional sensor readings.
+## Note
 
-## Troubleshooting
+- Ensure the server is ready to receive POST requests and handle the incoming sensor data.
 
-- If the code is not working as expected, check the following:
-  - Verify the correctness of the URL and ensure that the HTTP server is reachable.
-  - Confirm that the ADC is properly connected and configured.
-  - Check the network connection of your device.
-  - Inspect the HTTP server logs or response to diagnose any issues on the server side.
-
-## Disclaimer
-
-This code is provided as-is without any warranty. It may require modification or adaptation to work correctly in your specific environment. Use it at your own risk.
+Feel free to adapt the script according to your specific sensor requirements and integrate it into your IoT projects.
